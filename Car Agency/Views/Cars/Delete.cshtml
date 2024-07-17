@@ -1,0 +1,11 @@
+﻿@model Car
+<h1 class="alert alert-danger">Are you sure you want to delete @Model.CarName?</h1>
+
+<partial name="_CarData" />
+
+<form method="post" asp-controller="Cars" asp-action="DeleteCurrent">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Cars" asp-action="GetIndexView" class="btn btn-warning"><i class="bi bi-arrow-left-circle"></i> Back to List</a>
+</form>
+

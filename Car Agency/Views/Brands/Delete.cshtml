@@ -1,0 +1,11 @@
+﻿@model Brand
+<h1 class="alert alert-danger">Are you sure you want to delete @Model.BrandName?</h1>
+
+<partial name="_BranData" />
+
+<form method="post" asp-controller="Brands" asp-action="DeleteCurrent">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Brands" asp-action="GetIndexView" class="btn btn-warning"><i class="bi bi-arrow-left-circle"></i> Back to List</a>
+</form>
+

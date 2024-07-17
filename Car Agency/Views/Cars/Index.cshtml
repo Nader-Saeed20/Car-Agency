@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Car>
+<h1 class="alert alert-success text-center" role="alert ">Welcome in Cars</h1>
+<a asp-controller="Cars" asp-action="GetAddView" class="btn btn-dark"> Add Car</a>
+
+<div class="mt-4">
+    <form method="get" asp-controller="Cars" asp-action="GetIndexView">
+        <div class="input-group">
+            <input type="text" name="Search" value="@ViewBag.Search" />
+            <button type="submit" class="btn btn-secondary input-group-append"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
+</div>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(c => c.Id)</th>
+                <th>@Html.DisplayNameFor(c => c.CarName)</th>
+                <th>@Html.DisplayNameFor(c => c.CarBrand)</th>
+                <th>@Html.DisplayNameFor(c => c.Price)</th>
+                <th>@Html.DisplayNameFor(c => c.ImagePath)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="font-size:1.5rem">@item.Id</td>
+                        <td style="font-size:1.5rem">@item.CarName</td>
+                        <td style="font-size:1.5rem">@item.CarBrand</td>
+                        <td>@item.Price</td>
+
+                        <td style="width:18rem"><img class="rounded-3 w-50" src="@item.ImagePath" /></td>
+                        <td>
+                            <a asp-controller="Cars" asp-action="GetDetailsView" asp-route-id="@item.Id" class="btn btn-outline-warning w-100"><i class="bi bi-list-ul"></i> </a>
+                        </td>
+
+                        <td>
+                            <a asp-controller="Cars" asp-action="GetEditView" asp-route-id="@item.Id" class="btn btn-outline-primary w-100"><i class="bi bi-pencil-square"></i> </a>
+                        </td>
+
+                        <td>
+                            <a asp-controller="Cars" asp-action="GetDeleteView" asp-route-id="@item.Id" class="btn btn-outline-danger w-100"><i class="bi bi-trash"></i> </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3" style="text-align:right">Total</th>
+                <th>@Model.Sum(car => car.Price)</th>
+            </tr>
+        </tfoot>
+
+    </table>
+}
+else
+{
+    <h1 class="alert alert-warning text-center mt-5" >There are no Cars</h1>
+
+}
+
+@if (Model.Count() > 0)
+{
+    @foreach (var item in Model)
+    {
+        <div class="card border-success bg-transparent mb-2 text-dark text-center m-5"
+             style="width:18rem; height:19rem; display:inline-block">
+            <div class="card-header border-success bg-transparent">@item.CarName</div>
+            <div class="card-body border-success bg-transparent">
+                <img class="rounded-3 w-100" src="@item.ImagePath" />
+            </div>
+            <div class="card-footer border-success bg-transparent">
+                Start Date @item.CarModel.Year
+                <div>@item.Price.ToString("C0")</div>
+
+            </div>
+        </div>
+    }
+}

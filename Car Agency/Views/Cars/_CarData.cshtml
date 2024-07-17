@@ -1,0 +1,30 @@
+﻿@{
+    Car car = (Car)ViewBag.CurrentCar;
+}
+
+<div class="row ">
+    <dl class="col-6 row ">
+        <dt class="col-3">@Html.DisplayNameFor(c => car.Id)</dt>
+        <dd class="col-10">@Html.DisplayFor(c => car.Id)</dd>
+
+        <dt class="col-3 mt-3">@Html.DisplayNameFor(c => car.CarName)</dt>
+        <dd class="col-10">@Html.DisplayFor(c => car.CarName)</dd>
+
+        <dt class="col-3 mt-3">@Html.DisplayNameFor(c => car.CarBrand)</dt>
+        <dd class="col-10">@Html.DisplayFor(c => car.CarBrand)</dd>
+
+        <dt class="col-4 mt-3">@Html.DisplayNameFor(c => car.CarModel)</dt>
+        <dd class="col-10">@Model.CarModel.Year</dd>
+
+        <dt class="col-4 mt-3">@Html.DisplayNameFor(c => car.EngineCapacity)</dt>
+        <dd class="col-10">@Html.DisplayFor(c => car.EngineCapacity)</dd>
+
+        <dt class="col-4 mt-3">@Html.DisplayNameFor(c => car.Price)</dt>
+        <dd class="col-10">@Html.DisplayFor(c => car.Price)</dd>
+
+    </dl>
+
+    <img src="@Model.ImagePath" class="card col-6 mt-4 border-0 w-50" style="object-fit:contain; width:20rem" />
+
+
+</div>

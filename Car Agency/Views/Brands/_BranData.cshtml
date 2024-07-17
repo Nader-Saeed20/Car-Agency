@@ -1,0 +1,36 @@
+﻿@{
+    Brand brand = (Brand)ViewBag.CurrentBran;
+}
+
+<div class="row ">
+    <dl class="col-6 row ">
+        <dt class="col-3">@Html.DisplayNameFor(b => brand.Id)</dt>
+        <dd class="col-10">@Html.DisplayFor(b => brand.Id)</dd>
+
+        <dt class="col-3 mt-3">@Html.DisplayNameFor(b => brand.BrandName)</dt>
+        <dd class="col-10">@Html.DisplayFor(b => brand.BrandName)</dd>
+
+        <dt class="col-4 mt-3">@Html.DisplayNameFor(b => brand.BrandDescription)</dt>
+        <dd class="col-10">@Html.DisplayFor(b => brand.BrandDescription)</dd>
+
+        <dt class="col-4 mt-3">@Html.DisplayNameFor(d => brand.BrandStartDate)</dt>
+        <dd class="col-10">@Model.BrandStartDate.ToShortDateString()</dd>
+
+
+    </dl>
+
+    <img src="@Model.ImagePath" class="card col-6 mt-4 border-0" style="object-fit:contain; width:20rem" />
+</div>
+
+<ul class="col-4 list-group">
+    <li class="list-group-item active">Cars</li>
+    @foreach (var item in Model.Cars)
+    {
+        <li class="list-group-item list-group-item-action">
+            <a asp-controller="Cars" asp-action="GetDetailsView" asp-route-id="@item.Id" class="btn btn-info">
+                @item.CarName
+            </a>
+
+        </li>
+    }
+</ul>

@@ -1,0 +1,45 @@
+﻿@model Brand
+<h1 class="alert alert-dark text-center">Add Brand</h1>
+
+<div class="row">
+    <form class="col-4" method="post" asp-controller="Brands" asp-action="AddNew" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label asp-for="BrandName"></label>
+            <input type="text" asp-for="BrandName" class="form-control" />
+            <span asp-validation-for="BrandName" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="BrandDescription"></label>
+            <input type="text" asp-for="BrandDescription" class="form-control" />
+            <span asp-validation-for="BrandDescription" class="text-danger"></span>
+
+        </div>
+
+        <div>
+            <label asp-for="BrandStartDate"></label>
+            <input asp-for="BrandStartDate" class="form-control" />
+            <span asp-validation-for="BrandStartDate" class="text-danger"></span>
+
+        </div>
+
+        <div>
+            <label asp-for="ImagePath"></label>
+            <input type="file" name="imageFormFile" id="imageFormFile" accept=".png,.jpg" class="form-control" onchange="SetImg()" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 w-25">Add</button>
+        <a asp-controller="Brands" asp-action="GetIndexView" class="btn btn-warning mt-3 "><i class="bi bi-arrow-left-circle"></i> Back to List</a>
+    </form>
+    <img src="" id="brandImage" class="col-4 card border-0" style="object-fit:contain" />
+ 
+    @section Scripts{
+        <script>
+            function SetImg() {
+                document.getElementById("brandImage").src = window.URL.createObjectURL(document.getElementById("imageFormFile").files[0]);
+            }
+        </script>
+    }
+
+</div>
